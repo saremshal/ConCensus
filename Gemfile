@@ -63,3 +63,5 @@ gem 'devise'
 gem 'bootstrap-sass'
 # Administration Panel
 gem 'rails_admin', '~> 2.0'
+
+gem "pg", "~> 1.2"
