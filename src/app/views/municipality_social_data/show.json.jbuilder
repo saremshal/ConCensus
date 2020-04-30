@@ -1,0 +1,1 @@
+json.partial! "municipality_social_data/municipality_social_datum", municipality_social_datum: @municipality_social_datum

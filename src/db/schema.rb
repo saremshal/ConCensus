@@ -10,11 +10,55 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_13_190602) do
+ActiveRecord::Schema.define(version: 2020_04_30_052904) do
 
   create_table "app_configs", force: :cascade do |t|
     t.string "name"
     t.string "logo_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "municipality_data", force: :cascade do |t|
+    t.string "name"
+    t.string "tot_pop"
+    t.string "pop_under5"
+    t.string "pop_5to9"
+    t.string "pop_10to19"
+    t.string "pop_20to29"
+    t.string "pop_30to39"
+    t.string "pop_40to49"
+    t.string "pop_50to59"
+    t.string "pop_60to69"
+    t.string "pop_70to79"
+    t.string "pop_80to84"
+    t.string "pop_over85"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "municipality_social_data", force: :cascade do |t|
+    t.string "name"
+    t.string "year"
+    t.integer "households"
+    t.integer "family_households"
+    t.float "percent_family_households"
+    t.integer "married_male_above_15"
+    t.integer "never_married_male_above_15"
+    t.float "percent_never_married_males_above_15"
+    t.integer "married_females_above_15"
+    t.integer "never_married_females_above_15"
+    t.float "percent_never_married_females_above_15"
+    t.integer "total_15to50_gave_birth_past_year"
+    t.integer "older_3_in_school"
+    t.integer "older_3_in_highschool"
+    t.float "percent_older_3_in_highschool"
+    t.integer "older_3_in_college_or_graduate"
+    t.float "percent_older_3_in_college_or_graduate"
+    t.integer "total_25_and_older_highschool_grad"
+    t.float "percent_25_and_older_highschool_grad"
+    t.integer "household_with_computer"
+    t.float "percent_household_with_computer"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

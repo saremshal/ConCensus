@@ -1,0 +1,122 @@
+<%= form_with(model: municipality_social_datum, local: true) do |form| %>
+  <% if municipality_social_datum.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(municipality_social_datum.errors.count, "error") %> prohibited this municipality_social_datum from being saved:</h2>
+
+      <ul>
+        <% municipality_social_datum.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :year %>
+    <%= form.text_field :year %>
+  </div>
+
+  <div class="field">
+    <%= form.label :households %>
+    <%= form.number_field :households %>
+  </div>
+
+  <div class="field">
+    <%= form.label :family_households %>
+    <%= form.number_field :family_households %>
+  </div>
+
+  <div class="field">
+    <%= form.label :percent_family_households %>
+    <%= form.text_field :percent_family_households %>
+  </div>
+
+  <div class="field">
+    <%= form.label :married_male_above_15 %>
+    <%= form.number_field :married_male_above_15 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :never_married_male_above_15 %>
+    <%= form.number_field :never_married_male_above_15 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :percent_never_married_males_above_15 %>
+    <%= form.text_field :percent_never_married_males_above_15 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :married_females_above_15 %>
+    <%= form.number_field :married_females_above_15 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :never_married_females_above_15 %>
+    <%= form.number_field :never_married_females_above_15 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :percent_never_married_females_above_15 %>
+    <%= form.text_field :percent_never_married_females_above_15 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :total_15to50_gave_birth_past_year %>
+    <%= form.number_field :total_15to50_gave_birth_past_year %>
+  </div>
+
+  <div class="field">
+    <%= form.label :older_3_in_school %>
+    <%= form.number_field :older_3_in_school %>
+  </div>
+
+  <div class="field">
+    <%= form.label :older_3_in_highschool %>
+    <%= form.number_field :older_3_in_highschool %>
+  </div>
+
+  <div class="field">
+    <%= form.label :percent_older_3_in_highschool %>
+    <%= form.text_field :percent_older_3_in_highschool %>
+  </div>
+
+  <div class="field">
+    <%= form.label :older_3_in_college_or_graduate %>
+    <%= form.number_field :older_3_in_college_or_graduate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :percent_older_3_in_college_or_graduate %>
+    <%= form.text_field :percent_older_3_in_college_or_graduate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :total_25_and_older_highschool_grad %>
+    <%= form.number_field :total_25_and_older_highschool_grad %>
+  </div>
+
+  <div class="field">
+    <%= form.label :percent_25_and_older_highschool_grad %>
+    <%= form.text_field :percent_25_and_older_highschool_grad %>
+  </div>
+
+  <div class="field">
+    <%= form.label :household_with_computer %>
+    <%= form.number_field :household_with_computer %>
+  </div>
+
+  <div class="field">
+    <%= form.label :percent_household_with_computer %>
+    <%= form.text_field :percent_household_with_computer %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
