@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # The root page, e.g. www.example.com/, is sent here
   # root 'controller#method_in_controller'
-  root 'municipality_social_data#index'
+  #root 'municipality_social_data#index'
+  root 'home#index'
   # Devise authentification pages. This controlls the user login
   # and authentification system.
   devise_for :users

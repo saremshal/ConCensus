@@ -43,7 +43,77 @@
                     </div>
                     <div class="x_content">
                         <!-- content starts here -->
-                        
+
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6  ">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>Line graph<small>Sessions</small></h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="#">Settings 1</a>
+                                                    <a class="dropdown-item" href="#">Settings 2</a>
+                                                </div>
+                                                </li>
+                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/chart.js@2.8.0' %>
+                                        <canvas id="myChart"></canvas>
+                                        <script>
+                                            var data = new Array();
+                                            var year = new Array();
+                                            var temp = new Array();
+
+                                            //Gets the Year and Data for a given Municipality
+                                            <% @municipality_social_data.each do |municipality_social_datum| %>                                          
+                                                if ("<%= municipality_social_datum.name %>" === "Fort Lee borough, New Jersey" ) {
+                                                    temp.push([<%= municipality_social_datum.year %>, <%= municipality_social_datum.households %>]);
+                                                }
+                                            <% end %>                                             
+
+                                            //Sorts Temp Array based on Year
+                                            temp.sort(sortFunction);
+                                            function sortFunction(a, b) {
+                                                if (a[0] === b[0]) {
+                                                    return 0;
+                                                } else {
+                                                    return (a[0] < b[0]) ? -1 : 1;
+                                                }
+                                            }
+
+                                            //Push Sorted Data into Data Array
+                                            for (var i = 0; i < temp.length; i++) {
+                                                year.push(temp[i][0]);
+                                                data.push(temp[i][1]);
+                                            }
+                                            
+                                            //Create Line Graph
+                                            var ctx = document.getElementById('myChart').getContext('2d');
+                                            var households = new Chart(ctx, {
+                                                type: 'line',
+                                                data: {
+                                                    labels: year,
+                                                    datasets: [{
+                                                        label: "Total Households in Fort Lee, NJ",
+                                                        data: data
+                                                    }]
+                                                }
+                                            });
+                                            
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- content ends here -->
                     </div>
                 </div>

@@ -43,73 +43,46 @@
                     </div>
                     <div class="x_content">
                         <!-- content starts here -->
-                        <p id="notice"><%= notice %></p>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6  ">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>Line graph<small>Sessions</small></h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="#">Settings 1</a>
+                                                    <a class="dropdown-item" href="#">Settings 2</a>
+                                                </div>
+                                                </li>
+                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <script>
+                                            var data = new Array();
+                                            <% @municipality_social_data.each do |municipality_social_datum| %>                                          
+                                                if (municipality_social_datum.name == "Fort Lee borough, New Jersey" ) {
+                                                    data.push("<%= municipality_social_datum.year %>, <%= municipality_social_datum.households.to_s %>")
+                                                    console.log (data)
+                                                } 
+                                            <% end %>  
 
-                        <h1>Municipality Social Data</h1>
+                                            /*var myLineChart = new Chart (ctx. {
+                                                type: 'line',
+                                                data: 
+                                            });*/
 
-                        <table>
-                          <thead>
-                            <tr>
-                              <th>Name</th>
-                              <th>Year</th>
-                              <th>Households</th>
-                              <th>Family households</th>
-                              <th>Percent family households</th>
-                              <th>Married male above 15</th>
-                              <th>Never married male above 15</th>
-                              <th>Percent never married males above 15</th>
-                              <th>Married females above 15</th>
-                              <th>Never married females above 15</th>
-                              <th>Percent never married females above 15</th>
-                              <th>Total 15to50 gave birth past year</th>
-                              <th>Older 3 in school</th>
-                              <th>Older 3 in highschool</th>
-                              <th>Percent older 3 in highschool</th>
-                              <th>Older 3 in college or graduate</th>
-                              <th>Percent older 3 in college or graduate</th>
-                              <th>Total 25 and older highschool grad</th>
-                              <th>Percent 25 and older highschool grad</th>
-                              <th>Household with computer</th>
-                              <th>Percent household with computer</th>
-                              <th colspan="3"></th>
-                            </tr>
-                          </thead>
-
-                          <tbody>
-                            <% @municipality_social_data.each do |municipality_social_datum| %>
-                              <tr>
-                                <td><%= municipality_social_datum.name %></td>
-                                <td><%= municipality_social_datum.year %></td>
-                                <td><%= municipality_social_datum.households %></td>
-                                <td><%= municipality_social_datum.family_households %></td>
-                                <td><%= municipality_social_datum.percent_family_households %></td>
-                                <td><%= municipality_social_datum.married_male_above_15 %></td>
-                                <td><%= municipality_social_datum.never_married_male_above_15 %></td>
-                                <td><%= municipality_social_datum.percent_never_married_males_above_15 %></td>
-                                <td><%= municipality_social_datum.married_females_above_15 %></td>
-                                <td><%= municipality_social_datum.never_married_females_above_15 %></td>
-                                <td><%= municipality_social_datum.percent_never_married_females_above_15 %></td>
-                                <td><%= municipality_social_datum.total_15to50_gave_birth_past_year %></td>
-                                <td><%= municipality_social_datum.older_3_in_school %></td>
-                                <td><%= municipality_social_datum.older_3_in_highschool %></td>
-                                <td><%= municipality_social_datum.percent_older_3_in_highschool %></td>
-                                <td><%= municipality_social_datum.older_3_in_college_or_graduate %></td>
-                                <td><%= municipality_social_datum.percent_older_3_in_college_or_graduate %></td>
-                                <td><%= municipality_social_datum.total_25_and_older_highschool_grad %></td>
-                                <td><%= municipality_social_datum.percent_25_and_older_highschool_grad %></td>
-                                <td><%= municipality_social_datum.household_with_computer %></td>
-                                <td><%= municipality_social_datum.percent_household_with_computer %></td>
-                                <td><%= link_to 'Show', municipality_social_datum %></td>
-                                <td><%= link_to 'Edit', edit_municipality_social_datum_path(municipality_social_datum) %></td>
-                                <td><%= link_to 'Destroy', municipality_social_datum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                              </tr>
-                            <% end %>
-                          </tbody>
-                        </table>
-
-                        <br>
-
-                        <%= link_to 'New Municipality Social Datum', new_municipality_social_datum_path %>
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <br>
 

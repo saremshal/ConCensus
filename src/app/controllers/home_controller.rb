@@ -18,6 +18,6 @@ class HomeController < ApplicationController
   # in the view to be displayed. Do not look up information within the
   # view itself. Do it here, please!
   def index
-    
+    @municipality_social_data = MunicipalitySocialDatum.all
   end
 end
