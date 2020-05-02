@@ -11,10 +11,10 @@
             <div class="title_right">
                 <div class="col-md-5 col-sm-5   form-group pull-right top_search">
                     <div class="input-group">
-                        <%= simple_form_for :search, url: dashboard_path, method: "GET", html: { class: 'form-control' } do |f| %>
-                            <%= f.input :name, input_html: {value: ""} %>   
-                            <%= f.submit "Search", class: "btn btn-default" %>
-                        <% end %>
+                    <%= simple_form_for :search, url: dashboard_path, method: "GET", html: { class: 'dropdown' } do |f| %>
+                        <%= f.input :name, collection: @choices %>
+                        <%= f.submit "Search", class: "btn btn-primary" %>
+                    <% end %>
                     </div>
                 </div>
             </div>

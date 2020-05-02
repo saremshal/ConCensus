@@ -22,11 +22,21 @@ class HomeController < ApplicationController
 
   def index  
     @municipality_social_data = MunicipalitySocialDatum.all
+    @choices = Array.new
+    @municipality_social_data.each do |municipality_social_datum|
+      if (@choices.include?(municipality_social_datum.name) === false)
+        @choices.push(municipality_social_datum.name)
+      end
+    end
   end
 
   def dashboard
     @municipality_social_data = MunicipalitySocialDatum.all
+    @choices = Array.new
+    @municipality_social_data.each do |municipality_social_datum|
+      if (@choices.include?(municipality_social_datum.name) === false)
+        @choices.push(municipality_social_datum.name)
+      end
+    end
   end
-
-
 end

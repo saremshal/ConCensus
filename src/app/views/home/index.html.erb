@@ -76,8 +76,8 @@
               <h1>Make Your Business More Profitable</h1>
               <p class="mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam assumenda ea quo cupiditate facere deleniti fuga officia.</p>
               <div>
-                <%= simple_form_for :search, url: dashboard_path, method: "GET", html: { class: 'form-inline' } do |f| %>
-                    <%= f.input :name, input_html: {value: ""} %>   
+                <%= simple_form_for :search, url: dashboard_path, method: "GET", html: { class: 'dropdown' } do |f| %>
+                    <%= f.input :name, collection: @choices %>
                     <%= f.submit "Search", class: "btn btn-primary" %>
                 <% end %>
               </div>
