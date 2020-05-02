@@ -5,6 +5,8 @@ class HomeController < ApplicationController
   # No sign in needed to access these pages
   # Overrides ApplicationController's instructions to check for login by default
   skip_before_action :authenticate_user!
+  layout "home", :only => [:index]
+  layout "application", :only => [:dashboard]
 
   # GET /
   #
@@ -17,7 +19,14 @@ class HomeController < ApplicationController
   # Also, any local variable made inside this method will also exist
   # in the view to be displayed. Do not look up information within the
   # view itself. Do it here, please!
-  def index
+
+  def index  
     @municipality_social_data = MunicipalitySocialDatum.all
   end
+
+  def dashboard
+    @municipality_social_data = MunicipalitySocialDatum.all
+  end
+
+
 end

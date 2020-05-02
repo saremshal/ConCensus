@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   # # Add GET path for photos controller, index method
   # get 'photos/index'
   
+  get 'home/dashboard', to: 'home#dashboard', as: 'dashboard'
   get 'home/chart_js', to: 'home#chart_js', as: 'chart_js'
   get 'home/chart_js2', to: 'home#chart_js2', as: 'chart_js2'
   get 'home/echarts', to: 'home#echarts', as: 'echarts'
