@@ -12,27 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2020_04_30_052904) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "app_configs", force: :cascade do |t|
     t.string "name"
     t.string "logo_url"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "municipality_data", force: :cascade do |t|
-    t.string "name"
-    t.string "tot_pop"
-    t.string "pop_under5"
-    t.string "pop_5to9"
-    t.string "pop_10to19"
-    t.string "pop_20to29"
-    t.string "pop_30to39"
-    t.string "pop_40to49"
-    t.string "pop_50to59"
-    t.string "pop_60to69"
-    t.string "pop_70to79"
-    t.string "pop_80to84"
-    t.string "pop_over85"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
