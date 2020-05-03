@@ -6,7 +6,7 @@ class HomeController < ApplicationController
   # Overrides ApplicationController's instructions to check for login by default
   skip_before_action :authenticate_user!
   layout "home", :only => [:index]
-  layout "application", :only => [:dashboard]
+  layout "application", :only => [:dashboard, :bar_graph]
 
   # GET /
   #
@@ -39,4 +39,15 @@ class HomeController < ApplicationController
       end
     end
   end
+
+  def bar_graph
+    @municipality_social_data = MunicipalitySocialDatum.all
+    @choices = Array.new
+    @municipality_social_data.each do |municipality_social_datum|
+      if (@choices.include?(municipality_social_datum.name) === false)
+        @choices.push(municipality_social_datum.name)
+      end
+    end
+  end
+
 end

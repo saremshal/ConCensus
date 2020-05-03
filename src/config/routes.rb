@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   # get 'photos/index'
   
   get 'home/dashboard', to: 'home#dashboard', as: 'dashboard'
-  get 'home/chart_js', to: 'home#chart_js', as: 'chart_js'
+  get 'home/bar_graph', to: 'home#bar_graph', as: 'bar_graph'
   get 'home/chart_js2', to: 'home#chart_js2', as: 'chart_js2'
   get 'home/echarts', to: 'home#echarts', as: 'echarts'
   get 'home/moris_js', to: 'home#moris_js', as: 'moris_js'

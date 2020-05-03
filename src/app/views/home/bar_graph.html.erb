@@ -11,7 +11,7 @@
             <div class="title_right">
                 <div class="col-md-5 col-sm-5   form-group pull-right top_search">
                     <div class="input-group">
-                    <%= simple_form_for :search, url: dashboard_path, method: "GET", html: { class: 'dropdown' } do |f| %>
+                    <%= simple_form_for :search, url: bar_graph_path, method: "GET", html: { class: 'dropdown' } do |f| %>
                         <%= f.input :name, collection: @choices %>
                         <%= f.submit "Search", class: "btn btn-primary" %>
                     <% end %>
@@ -102,15 +102,20 @@
                                             //Create Line Graph
                                             var ctx = document.getElementById('household_graph').getContext('2d');
                                             var households = new Chart(ctx, {
-                                                type: 'line',
+                                                type: 'bar',
                                                 data: {
                                                     labels: year,
                                                     datasets: [{
-                                                        label: "Total Households in " + name,
                                                         data: data,
-                                                        borderColor: "#3e95cd",
-                                                        fill: false
-                                                    }]
+                                                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"]
+                                                    }],
+                                                },
+                                                options: {
+                                                    legend: { display: false },
+                                                    title: {
+                                                        display: true,
+                                                        text: "Total Households in " + name
+                                                    }
                                                 }
                                             });
                                             
@@ -171,15 +176,20 @@
                                             //Create Line Graph
                                             var ctx = document.getElementById('family_household_graph').getContext('2d');
                                             var households = new Chart(ctx, {
-                                                type: 'line',
+                                                type: 'bar',
                                                 data: {
                                                     labels: year,
                                                     datasets: [{
-                                                        label: "Total Family Households in " + name,
                                                         data: data,
-                                                        borderColor: "#8e5ea2",
-                                                        fill: false
+                                                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"]
                                                     }]
+                                                },
+                                                options: {
+                                                    legend: { display: false },
+                                                    title: {
+                                                        display: true,
+                                                        text: "Total Family Households in " + name,
+                                                    }
                                                 }
                                             });
                                             
@@ -242,15 +252,20 @@
                                             //Create Line Graph
                                             var ctx = document.getElementById('birth_graph').getContext('2d');
                                             var households = new Chart(ctx, {
-                                                type: 'line',
+                                                type: 'bar',
                                                 data: {
                                                     labels: year,
                                                     datasets: [{
-                                                        label: "Total Females That Gave Birth (Ages 15-50) in " + name,
                                                         data: data,
-                                                        borderColor: "#3cba9f",
-                                                        fill: false
+                                                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"]
                                                     }]
+                                                },
+                                                options: {
+                                                    legend: { display: false },
+                                                    title: {
+                                                        display: true,
+                                                        text: "Total Females That Gave Birth (Ages 15-50) in " + name,
+                                                    }
                                                 }
                                             });
                                             
@@ -314,15 +329,20 @@
                                             //Create Line Graph
                                             var ctx = document.getElementById('married_males_graph').getContext('2d');
                                             var households = new Chart(ctx, {
-                                                type: 'line',
+                                                type: 'bar',
                                                 data: {
                                                     labels: year,
                                                     datasets: [{
-                                                        label: "Total Married Males (Above 15 Years Old) in " + name,
                                                         data: data,
-                                                        borderColor: "#e8c3b9",
-                                                        fill: false
+                                                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"]
                                                     }]
+                                                },
+                                                options: {
+                                                    legend: { display: false },
+                                                    title: {
+                                                        display: true,
+                                                        text: "Total Married Males (Above 15 Years Old) in " + name,
+                                                    }
                                                 }
                                             });
                                             
@@ -384,15 +404,20 @@
                                             //Create Line Graph
                                             var ctx = document.getElementById('married_females_graph').getContext('2d');
                                             var households = new Chart(ctx, {
-                                                type: 'line',
+                                                type: 'bar',
                                                 data: {
                                                     labels: year,
                                                     datasets: [{
-                                                        label: "Total Married Females (Above 15 Years Old) in " + name,
                                                         data: data,
-                                                        borderColor: "#c45850",
-                                                        fill: false
+                                                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"]
                                                     }]
+                                                },
+                                                options: {
+                                                    legend: { display: false },
+                                                    title: {
+                                                        display: true,
+                                                        text: "Total Married Females (Above 15 Years Old) in " + name,
+                                                    }
                                                 }
                                             });
                                             
@@ -455,15 +480,20 @@
                                             //Create Line Graph
                                             var ctx = document.getElementById('in_school_graph').getContext('2d');
                                             var households = new Chart(ctx, {
-                                                type: 'line',
+                                                type: 'bar',
                                                 data: {
                                                     labels: year,
                                                     datasets: [{
-                                                        label: "Total People in School in " + name,
                                                         data: data,
-                                                        borderColor: "#3e95cd",
-                                                        fill: false
+                                                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"]
                                                     }]
+                                                },
+                                                options: {
+                                                    legend: { display: false },
+                                                    title: {
+                                                        display: true,
+                                                        text: "Total People in School in " + name,
+                                                    }
                                                 }
                                             });
                                             
@@ -525,15 +555,20 @@
                                             //Create Line Graph
                                             var ctx = document.getElementById('in_highschool_graph').getContext('2d');
                                             var households = new Chart(ctx, {
-                                                type: 'line',
+                                                type: 'bar',
                                                 data: {
                                                     labels: year,
                                                     datasets: [{
-                                                        label: "Total People in Highschool in " + name,
                                                         data: data,
-                                                        borderColor: "#8e5ea2",
-                                                        fill: false
+                                                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"]
                                                     }]
+                                                },
+                                                options: {
+                                                    legend: { display: false },
+                                                    title: {
+                                                        display: true,
+                                                        text: "Total People in Highschool in " + name,
+                                                    }
                                                 }
                                             });
                                             
@@ -595,15 +630,20 @@
                                             //Create Line Graph
                                             var ctx = document.getElementById('in_college_graph').getContext('2d');
                                             var households = new Chart(ctx, {
-                                                type: 'line',
+                                                type: 'bar',
                                                 data: {
                                                     labels: year,
                                                     datasets: [{
-                                                        label: "Total People in College in " + name,
                                                         data: data,
-                                                        borderColor: "#3cba9f",
-                                                        fill: false
+                                                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"]
                                                     }]
+                                                },
+                                                options: {
+                                                    legend: { display: false },
+                                                    title: {
+                                                        display: true,
+                                                        text: "Total People in College in " + name,
+                                                    }
                                                 }
                                             });
                                             
@@ -666,15 +706,20 @@
                                             //Create Line Graph
                                             var ctx = document.getElementById('highschool_grad_graph').getContext('2d');
                                             var households = new Chart(ctx, {
-                                                type: 'line',
+                                                type: 'bar',
                                                 data: {
                                                     labels: year,
                                                     datasets: [{
-                                                        label: "Total People that are Highschool Graduates in " + name,
                                                         data: data,
-                                                        borderColor: "#e8c3b9",
-                                                        fill: false
+                                                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"]
                                                     }]
+                                                },
+                                                options: {
+                                                    legend: { display: false },
+                                                    title: {
+                                                        display: true,
+                                                        text: "Total People that are Highschool Graduates in " + name,
+                                                    }
                                                 }
                                             });
                                             
@@ -736,15 +781,20 @@
                                             //Create Line Graph
                                             var ctx = document.getElementById('computers_graph').getContext('2d');
                                             var households = new Chart(ctx, {
-                                                type: 'line',
+                                                type: 'bar',
                                                 data: {
                                                     labels: year,
                                                     datasets: [{
-                                                        label: "Total Households with Computers in " + name,
                                                         data: data,
-                                                        borderColor: "#c45850",
-                                                        fill: false
+                                                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"]
                                                     }]
+                                                },
+                                                options: {
+                                                    legend: { display: false },
+                                                    title: {
+                                                        display: true,
+                                                        text: "Total Households with Computers in " + name,
+                                                    }
                                                 }
                                             });
                                             
