@@ -31,3 +31,7 @@ When making additions to this project, please follow these guidelines:
 1. Please make a branch from develop for the feature you are adding 
 2. Raise an issue and assign yourself to show that you are working on this issue
 3. Make a pull request and have atleast 1 person review your code before merging
+
+### Licensing:
+
+This project uses the [GNU General Public License 3.0](http://google.com)
