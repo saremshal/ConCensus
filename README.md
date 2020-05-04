@@ -24,3 +24,10 @@ The Census Data was acquired from the ACS 5 Year Survey 2014-2018.
 Colorlib Templates were used for the Home Page and the Dashboard Pages.
 Genetellela Admin Template: https://colorlib.com/polygon/gentelella/index.html
 Imagine Template: https://colorlib.com/preview/theme/imagine/index.html
+
+### Contribution Guide: 
+
+When making additions to this project, please follow these guidelines:
+1. Please make a branch from develop for the feature you are adding 
+2. Raise an issue and assign yourself to show that you are working on this issue
+3. Make a pull request and have atleast 1 person review your code before merging
