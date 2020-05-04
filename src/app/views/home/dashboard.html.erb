@@ -1,0 +1,762 @@
+<div class="right_col" role="main">
+ 
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>
+                    Data Dashboard
+                </h3>
+            </div>
+ 
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+                    <div class="input-group">
+                    <%= simple_form_for :search, url: dashboard_path, method: "GET", html: { class: 'dropdown' } do |f| %>
+                        <%= f.input :name, collection: @choices %>
+                        <%= f.submit "Search", class: "btn btn-primary" %>
+                    <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+ 
+        <div class="row">
+            <div class="col-md-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2> Census Data<small>2014 - 2018 </small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    <i class="fa fa-wrench"></i>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Settings 1</a></li>
+                                    <li><a href="#">Settings 2</a></li>
+                                </ul>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <!-- content starts here -->
+
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6  ">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>Total Households</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="#">Settings 1</a>
+                                                    <a class="dropdown-item" href="#">Settings 2</a>
+                                                </div>
+                                                </li>
+                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/chart.js@2.8.0' %>
+                                        <canvas id="household_graph"></canvas>
+                                        <script>
+                                            const queryString = window.location.search;
+                                            const urlParams = new URLSearchParams(queryString);
+                                            var name = urlParams.get("search[name]");
+
+                                            var data = new Array();
+                                            var year = new Array();
+                                            var temp = new Array();
+
+                                            //Gets the Year and Data for a given Municipality
+                                            <% @municipality_social_data.each do |municipality_social_datum| %>                                          
+                                                if ("<%= municipality_social_datum.name %>" === name ) {
+                                                    temp.push([<%= municipality_social_datum.year %>, <%= municipality_social_datum.households %>]);
+                                                }
+                                            <% end %>                                             
+
+                                            //Sorts Temp Array based on Year
+                                            temp.sort(sortFunction);
+                                            function sortFunction(a, b) {
+                                                if (a[0] === b[0]) {
+                                                    return 0;
+                                                } else {
+                                                    return (a[0] < b[0]) ? -1 : 1;
+                                                }
+                                            }
+
+                                            //Push Sorted Data into Data Array
+                                            for (var i = 0; i < temp.length; i++) {
+                                                year.push(temp[i][0]);
+                                                data.push(temp[i][1]);
+                                            }
+                                            
+                                            //Create Line Graph
+                                            var ctx = document.getElementById('household_graph').getContext('2d');
+                                            var households = new Chart(ctx, {
+                                                type: 'line',
+                                                data: {
+                                                    labels: year,
+                                                    datasets: [{
+                                                        label: "Total Households in " + name,
+                                                        data: data,
+                                                        borderColor: "#3e95cd",
+                                                        fill: false
+                                                    }]
+                                                }
+                                            });
+                                            
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6  ">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>Total Family Household</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="#">Settings 1</a>
+                                                    <a class="dropdown-item" href="#">Settings 2</a>
+                                                </div>
+                                                </li>
+                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/chart.js@2.8.0' %>
+                                        <canvas id="family_household_graph"></canvas>
+                                        <script>
+                                            var data = new Array();
+                                            var year = new Array();
+                                            var temp = new Array();
+
+                                            //Gets the Year and Data for a given Municipality
+                                            <% @municipality_social_data.each do |municipality_social_datum| %>                                          
+                                                if ("<%= municipality_social_datum.name %>" === name ) {
+                                                    temp.push([<%= municipality_social_datum.year %>, <%= municipality_social_datum.family_households %>]);
+                                                }
+                                            <% end %>                                             
+
+                                            //Sorts Temp Array based on Year
+                                            temp.sort(sortFunction);
+                                            function sortFunction(a, b) {
+                                                if (a[0] === b[0]) {
+                                                    return 0;
+                                                } else {
+                                                    return (a[0] < b[0]) ? -1 : 1;
+                                                }
+                                            }
+
+                                            //Push Sorted Data into Data Array
+                                            for (var i = 0; i < temp.length; i++) {
+                                                year.push(temp[i][0]);
+                                                data.push(temp[i][1]);
+                                            }
+                                            
+                                            //Create Line Graph
+                                            var ctx = document.getElementById('family_household_graph').getContext('2d');
+                                            var households = new Chart(ctx, {
+                                                type: 'line',
+                                                data: {
+                                                    labels: year,
+                                                    datasets: [{
+                                                        label: "Total Family Households in " + name,
+                                                        data: data,
+                                                        borderColor: "#8e5ea2",
+                                                        fill: false
+                                                    }]
+                                                }
+                                            });
+                                            
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 col-sm-8">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>Total Females That Gave Birth (Ages 15-50)</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="#">Settings 1</a>
+                                                    <a class="dropdown-item" href="#">Settings 2</a>
+                                                </div>
+                                                </li>
+                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/chart.js@2.8.0' %>
+                                        <canvas id="birth_graph"></canvas>
+                                        <script>
+                                            var data = new Array();
+                                            var year = new Array();
+                                            var temp = new Array();
+
+                                            //Gets the Year and Data for a given Municipality
+                                            <% @municipality_social_data.each do |municipality_social_datum| %>                                          
+                                                if ("<%= municipality_social_datum.name %>" === name ) {
+                                                    temp.push([<%= municipality_social_datum.year %>, <%= municipality_social_datum.total_15to50_gave_birth_past_year %>]);
+                                                }
+                                            <% end %>                                             
+
+                                            //Sorts Temp Array based on Year
+                                            temp.sort(sortFunction);
+                                            function sortFunction(a, b) {
+                                                if (a[0] === b[0]) {
+                                                    return 0;
+                                                } else {
+                                                    return (a[0] < b[0]) ? -1 : 1;
+                                                }
+                                            }
+
+                                            //Push Sorted Data into Data Array
+                                            for (var i = 0; i < temp.length; i++) {
+                                                year.push(temp[i][0]);
+                                                data.push(temp[i][1]);
+                                            }
+                                            
+                                            //Create Line Graph
+                                            var ctx = document.getElementById('birth_graph').getContext('2d');
+                                            var households = new Chart(ctx, {
+                                                type: 'line',
+                                                data: {
+                                                    labels: year,
+                                                    datasets: [{
+                                                        label: "Total Females That Gave Birth (Ages 15-50) in " + name,
+                                                        data: data,
+                                                        borderColor: "#3cba9f",
+                                                        fill: false
+                                                    }]
+                                                }
+                                            });
+                                            
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>Total Married Men Above 15</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="#">Settings 1</a>
+                                                    <a class="dropdown-item" href="#">Settings 2</a>
+                                                </div>
+                                                </li>
+                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/chart.js@2.8.0' %>
+                                        <canvas id="married_males_graph"></canvas>
+                                        <script>
+                                            var data = new Array();
+                                            var year = new Array();
+                                            var temp = new Array();
+
+                                            //Gets the Year and Data for a given Municipality
+                                            <% @municipality_social_data.each do |municipality_social_datum| %>                                          
+                                                if ("<%= municipality_social_datum.name %>" === name ) {
+                                                    temp.push([<%= municipality_social_datum.year %>, <%= municipality_social_datum.married_male_above_15 %>]);
+                                                }
+                                            <% end %>                                             
+
+                                            //Sorts Temp Array based on Year
+                                            temp.sort(sortFunction);
+                                            function sortFunction(a, b) {
+                                                if (a[0] === b[0]) {
+                                                    return 0;
+                                                } else {
+                                                    return (a[0] < b[0]) ? -1 : 1;
+                                                }
+                                            }
+
+                                            //Push Sorted Data into Data Array
+                                            for (var i = 0; i < temp.length; i++) {
+                                                year.push(temp[i][0]);
+                                                data.push(temp[i][1]);
+                                            }
+                                            
+                                            //Create Line Graph
+                                            var ctx = document.getElementById('married_males_graph').getContext('2d');
+                                            var households = new Chart(ctx, {
+                                                type: 'line',
+                                                data: {
+                                                    labels: year,
+                                                    datasets: [{
+                                                        label: "Total Married Males (Above 15 Years Old) in " + name,
+                                                        data: data,
+                                                        borderColor: "#e8c3b9",
+                                                        fill: false
+                                                    }]
+                                                }
+                                            });
+                                            
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6  ">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>Total Married Females Above 15</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="#">Settings 1</a>
+                                                    <a class="dropdown-item" href="#">Settings 2</a>
+                                                </div>
+                                                </li>
+                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/chart.js@2.8.0' %>
+                                        <canvas id="married_females_graph"></canvas>
+                                        <script>
+
+                                            var data = new Array();
+                                            var year = new Array();
+                                            var temp = new Array();
+
+                                            //Gets the Year and Data for a given Municipality
+                                            <% @municipality_social_data.each do |municipality_social_datum| %>                                          
+                                                if ("<%= municipality_social_datum.name %>" === name ) {
+                                                    temp.push([<%= municipality_social_datum.year %>, <%= municipality_social_datum.married_females_above_15 %>]);
+                                                }
+                                            <% end %>                                             
+
+                                            //Sorts Temp Array based on Year
+                                            temp.sort(sortFunction);
+                                            function sortFunction(a, b) {
+                                                if (a[0] === b[0]) {
+                                                    return 0;
+                                                } else {
+                                                    return (a[0] < b[0]) ? -1 : 1;
+                                                }
+                                            }
+
+                                            //Push Sorted Data into Data Array
+                                            for (var i = 0; i < temp.length; i++) {
+                                                year.push(temp[i][0]);
+                                                data.push(temp[i][1]);
+                                            }
+                                            
+                                            //Create Line Graph
+                                            var ctx = document.getElementById('married_females_graph').getContext('2d');
+                                            var households = new Chart(ctx, {
+                                                type: 'line',
+                                                data: {
+                                                    labels: year,
+                                                    datasets: [{
+                                                        label: "Total Married Females (Above 15 Years Old) in " + name,
+                                                        data: data,
+                                                        borderColor: "#c45850",
+                                                        fill: false
+                                                    }]
+                                                }
+                                            });
+                                            
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4  ">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>Total People in School</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="#">Settings 1</a>
+                                                    <a class="dropdown-item" href="#">Settings 2</a>
+                                                </div>
+                                                </li>
+                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/chart.js@2.8.0' %>
+                                        <canvas id="in_school_graph"></canvas>
+                                        <script>
+                                            var data = new Array();
+                                            var year = new Array();
+                                            var temp = new Array();
+
+                                            //Gets the Year and Data for a given Municipality
+                                            <% @municipality_social_data.each do |municipality_social_datum| %>                                          
+                                                if ("<%= municipality_social_datum.name %>" === name ) {
+                                                    temp.push([<%= municipality_social_datum.year %>, <%= municipality_social_datum.older_3_in_school %>]);
+                                                }
+                                            <% end %>                                             
+
+                                            //Sorts Temp Array based on Year
+                                            temp.sort(sortFunction);
+                                            function sortFunction(a, b) {
+                                                if (a[0] === b[0]) {
+                                                    return 0;
+                                                } else {
+                                                    return (a[0] < b[0]) ? -1 : 1;
+                                                }
+                                            }
+
+                                            //Push Sorted Data into Data Array
+                                            for (var i = 0; i < temp.length; i++) {
+                                                year.push(temp[i][0]);
+                                                data.push(temp[i][1]);
+                                            }
+                                            
+                                            //Create Line Graph
+                                            var ctx = document.getElementById('in_school_graph').getContext('2d');
+                                            var households = new Chart(ctx, {
+                                                type: 'line',
+                                                data: {
+                                                    labels: year,
+                                                    datasets: [{
+                                                        label: "Total People in School in " + name,
+                                                        data: data,
+                                                        borderColor: "#3e95cd",
+                                                        fill: false
+                                                    }]
+                                                }
+                                            });
+                                            
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4  ">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>Total People in Highschool</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="#">Settings 1</a>
+                                                    <a class="dropdown-item" href="#">Settings 2</a>
+                                                </div>
+                                                </li>
+                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/chart.js@2.8.0' %>
+                                        <canvas id="in_highschool_graph"></canvas>
+                                        <script>
+
+                                            var data = new Array();
+                                            var year = new Array();
+                                            var temp = new Array();
+
+                                            //Gets the Year and Data for a given Municipality
+                                            <% @municipality_social_data.each do |municipality_social_datum| %>                                          
+                                                if ("<%= municipality_social_datum.name %>" === name ) {
+                                                    temp.push([<%= municipality_social_datum.year %>, <%= municipality_social_datum.older_3_in_highschool %>]);
+                                                }
+                                            <% end %>                                             
+
+                                            //Sorts Temp Array based on Year
+                                            temp.sort(sortFunction);
+                                            function sortFunction(a, b) {
+                                                if (a[0] === b[0]) {
+                                                    return 0;
+                                                } else {
+                                                    return (a[0] < b[0]) ? -1 : 1;
+                                                }
+                                            }
+
+                                            //Push Sorted Data into Data Array
+                                            for (var i = 0; i < temp.length; i++) {
+                                                year.push(temp[i][0]);
+                                                data.push(temp[i][1]);
+                                            }
+                                            
+                                            //Create Line Graph
+                                            var ctx = document.getElementById('in_highschool_graph').getContext('2d');
+                                            var households = new Chart(ctx, {
+                                                type: 'line',
+                                                data: {
+                                                    labels: year,
+                                                    datasets: [{
+                                                        label: "Total People in Highschool in " + name,
+                                                        data: data,
+                                                        borderColor: "#8e5ea2",
+                                                        fill: false
+                                                    }]
+                                                }
+                                            });
+                                            
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4  ">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>Total People in College</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="#">Settings 1</a>
+                                                    <a class="dropdown-item" href="#">Settings 2</a>
+                                                </div>
+                                                </li>
+                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/chart.js@2.8.0' %>
+                                        <canvas id="in_college_graph"></canvas>
+                                        <script>
+
+                                            var data = new Array();
+                                            var year = new Array();
+                                            var temp = new Array();
+
+                                            //Gets the Year and Data for a given Municipality
+                                            <% @municipality_social_data.each do |municipality_social_datum| %>                                          
+                                                if ("<%= municipality_social_datum.name %>" === name ) {
+                                                    temp.push([<%= municipality_social_datum.year %>, <%= municipality_social_datum.older_3_in_college_or_graduate %>]);
+                                                }
+                                            <% end %>                                             
+
+                                            //Sorts Temp Array based on Year
+                                            temp.sort(sortFunction);
+                                            function sortFunction(a, b) {
+                                                if (a[0] === b[0]) {
+                                                    return 0;
+                                                } else {
+                                                    return (a[0] < b[0]) ? -1 : 1;
+                                                }
+                                            }
+
+                                            //Push Sorted Data into Data Array
+                                            for (var i = 0; i < temp.length; i++) {
+                                                year.push(temp[i][0]);
+                                                data.push(temp[i][1]);
+                                            }
+                                            
+                                            //Create Line Graph
+                                            var ctx = document.getElementById('in_college_graph').getContext('2d');
+                                            var households = new Chart(ctx, {
+                                                type: 'line',
+                                                data: {
+                                                    labels: year,
+                                                    datasets: [{
+                                                        label: "Total People in College in " + name,
+                                                        data: data,
+                                                        borderColor: "#3cba9f",
+                                                        fill: false
+                                                    }]
+                                                }
+                                            });
+                                            
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>Total People that are Highschool Graduates</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="#">Settings 1</a>
+                                                    <a class="dropdown-item" href="#">Settings 2</a>
+                                                </div>
+                                                </li>
+                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/chart.js@2.8.0' %>
+                                        <canvas id="highschool_grad_graph"></canvas>
+                                        <script>
+                                            var data = new Array();
+                                            var year = new Array();
+                                            var temp = new Array();
+
+                                            //Gets the Year and Data for a given Municipality
+                                            <% @municipality_social_data.each do |municipality_social_datum| %>                                          
+                                                if ("<%= municipality_social_datum.name %>" === name ) {
+                                                    temp.push([<%= municipality_social_datum.year %>, <%= municipality_social_datum.total_25_and_older_highschool_grad %>]);
+                                                }
+                                            <% end %>                                             
+
+                                            //Sorts Temp Array based on Year
+                                            temp.sort(sortFunction);
+                                            function sortFunction(a, b) {
+                                                if (a[0] === b[0]) {
+                                                    return 0;
+                                                } else {
+                                                    return (a[0] < b[0]) ? -1 : 1;
+                                                }
+                                            }
+
+                                            //Push Sorted Data into Data Array
+                                            for (var i = 0; i < temp.length; i++) {
+                                                year.push(temp[i][0]);
+                                                data.push(temp[i][1]);
+                                            }
+                                            
+                                            //Create Line Graph
+                                            var ctx = document.getElementById('highschool_grad_graph').getContext('2d');
+                                            var households = new Chart(ctx, {
+                                                type: 'line',
+                                                data: {
+                                                    labels: year,
+                                                    datasets: [{
+                                                        label: "Total People that are Highschool Graduates in " + name,
+                                                        data: data,
+                                                        borderColor: "#e8c3b9",
+                                                        fill: false
+                                                    }]
+                                                }
+                                            });
+                                            
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6  ">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>Total Households with Computers</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="#">Settings 1</a>
+                                                    <a class="dropdown-item" href="#">Settings 2</a>
+                                                </div>
+                                                </li>
+                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/chart.js@2.8.0' %>
+                                        <canvas id="computers_graph"></canvas>
+                                        <script>
+
+                                            var data = new Array();
+                                            var year = new Array();
+                                            var temp = new Array();
+
+                                            //Gets the Year and Data for a given Municipality
+                                            <% @municipality_social_data.each do |municipality_social_datum| %>                                          
+                                                if ("<%= municipality_social_datum.name %>" === name ) {
+                                                    temp.push([<%= municipality_social_datum.year %>, <%= municipality_social_datum.household_with_computer %>]);
+                                                }
+                                            <% end %>                                             
+
+                                            //Sorts Temp Array based on Year
+                                            temp.sort(sortFunction);
+                                            function sortFunction(a, b) {
+                                                if (a[0] === b[0]) {
+                                                    return 0;
+                                                } else {
+                                                    return (a[0] < b[0]) ? -1 : 1;
+                                                }
+                                            }
+
+                                            //Push Sorted Data into Data Array
+                                            for (var i = 0; i < temp.length; i++) {
+                                                year.push(temp[i][0]);
+                                                data.push(temp[i][1]);
+                                            }
+                                            
+                                            //Create Line Graph
+                                            var ctx = document.getElementById('computers_graph').getContext('2d');
+                                            var households = new Chart(ctx, {
+                                                type: 'line',
+                                                data: {
+                                                    labels: year,
+                                                    datasets: [{
+                                                        label: "Total Households with Computers in " + name,
+                                                        data: data,
+                                                        borderColor: "#c45850",
+                                                        fill: false
+                                                    }]
+                                                }
+                                            });
+                                            
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- content ends here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

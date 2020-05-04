@@ -1,0 +1,47 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  year: MyString
+  households: 1
+  family_households: 1
+  percent_family_households: 1.5
+  married_male_above_15: 1
+  never_married_male_above_15: 1
+  percent_never_married_males_above_15: 1.5
+  married_females_above_15: 1
+  never_married_females_above_15: 1
+  percent_never_married_females_above_15: 1.5
+  total_15to50_gave_birth_past_year: 1
+  older_3_in_school: 1
+  older_3_in_highschool: 1
+  percent_older_3_in_highschool: 1.5
+  older_3_in_college_or_graduate: 1
+  percent_older_3_in_college_or_graduate: 1.5
+  total_25_and_older_highschool_grad: 1
+  percent_25_and_older_highschool_grad: 1.5
+  household_with_computer: 1
+  percent_household_with_computer: 1.5
+
+two:
+  name: MyString
+  year: MyString
+  households: 1
+  family_households: 1
+  percent_family_households: 1.5
+  married_male_above_15: 1
+  never_married_male_above_15: 1
+  percent_never_married_males_above_15: 1.5
+  married_females_above_15: 1
+  never_married_females_above_15: 1
+  percent_never_married_females_above_15: 1.5
+  total_15to50_gave_birth_past_year: 1
+  older_3_in_school: 1
+  older_3_in_highschool: 1
+  percent_older_3_in_highschool: 1.5
+  older_3_in_college_or_graduate: 1
+  percent_older_3_in_college_or_graduate: 1.5
+  total_25_and_older_highschool_grad: 1
+  percent_25_and_older_highschool_grad: 1.5
+  household_with_computer: 1
+  percent_household_with_computer: 1.5

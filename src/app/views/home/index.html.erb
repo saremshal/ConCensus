@@ -1,0 +1,102 @@
+<div id="overlayer"></div>
+<div class="loader">
+  <div class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+<div class="site-wrap"  id="home-section">
+
+  <div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+      <div class="site-mobile-menu-close mt-3">
+        <span class="icon-close2 js-menu-toggle"></span>
+      </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+  </div>
+ 
+ 
+  <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+
+    <div class="container">
+      <div class="row align-items-center">
+        
+        <div class="col-6 col-md-3 col-xl-4  d-block">
+          <h1 class="mb-0 site-logo"><a href="index.html" class="text-black h2 mb-0">ConCensus<span class="text-primary">.</span> </a></h1>
+        </div>
+
+        <div class="col-12 col-md-9 col-xl-8 main-menu">
+          <nav class="site-navigation position-relative text-right" role="navigation">
+
+            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block ml-0 pl-0">
+              <li><a href="#home-section" class="nav-link">Home</a></li>
+              <li><%= link_to 'Dashboard', dashboard_path, class: "nav-link", data: { turbolinks: false } %></li>
+              <li><a href="#about-section" class="nav-link">About Us</a></li>
+            </ul>
+          </nav>
+        </div>
+
+
+        <div class="col-6 col-md-9 d-inline-block d-lg-none ml-md-0" ><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+
+      </div>
+    </div>
+    
+  </header>
+  
+
+  <div class="site-blocks-cover" style="overflow: hidden;">
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+
+        <div class="col-md-12" style="position: relative;" data-aos="fade-up" data-aos-delay="200">
+          
+          <img src="https://colorlib.com/preview/theme/imagine/images/undraw_investing_7u74.svg" alt="Image" class="img-fluid img-absolute">
+
+          <div class="row mb-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="col-lg-6 mr-auto">
+              <h1>Start Learning More About Your Community</h1>
+              <p></p>
+              <div>
+                <%= simple_form_for :search, url: dashboard_path, method: "GET", html: { class: 'dropdown' } do |f| %>
+                    <%= f.input :name, collection: @choices %>
+                    <%= f.submit "Search", class: "btn btn-primary" %>
+                <% end %>
+              </div>
+            </div>
+            
+            
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>  
+
+  <div class="site-section bg-light" id="about-section">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-12 text-center">
+          <h2 class="section-title mb-3">About Us</h2>
+        </div>
+      </div>
+      <div class="row mb-5">
+        <div class="col-lg-6" data-aos="fade-right">
+          <img src="https://colorlib.com/preview/theme/imagine/images/undraw_bookmarks_r6up.svg" alt="Image" class="img-fluid">
+        </div>
+        <div class="col-lg-5 ml-auto pl-lg-5">
+          <h2 class="text-black mb-4 h3 font-weight-bold">Our Mission</h2>
+          <p class="mb-4">Census data provides really important information to the public, but it is too hard to find good and useful data because there is so much data that they provide. We aim to help people understand the neighborhood that they live in by visualizing important census data of your municipality. In this website, you can: </p>
+          <ul class="ul-check mb-5 list-unstyled success">
+            <li>Research Census Data</li>
+            <li>Make Decisions based on data in your Municipality</li>
+            <li>See trends that are occuring in your Town</li>
+          </ul>
+          <p><%= link_to 'Dashboard', dashboard_path, class: "btn btn-primary", data: { turbolinks: false } %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div> <!-- .site-wrap -->

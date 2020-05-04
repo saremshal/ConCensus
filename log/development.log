@@ -1,0 +1,543 @@
+Started GET "/" for 159.91.172.116 at 2020-03-31 14:18:12 -0400
+Cannot render console from 159.91.172.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        rails db:migrate RAILS_ENV=development
+
+):
+  
+activerecord (6.0.2.1) lib/active_record/migration.rb:587:in `check_pending!'
+activerecord (6.0.2.1) lib/active_record/migration.rb:564:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.2.1) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+better_errors (2.5.1) lib/better_errors/middleware.rb:59:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+web-console (4.0.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.1) lib/web_console/middleware.rb:19:in `block in call'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.1.1) lib/rack/method_override.rb:24:in `call'
+rack (2.1.1) lib/rack/runtime.rb:24:in `call'
+activesupport (6.0.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.1.1) lib/rack/sendfile.rb:113:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.2.1) lib/rails/engine.rb:526:in `call'
+puma (4.3.1) lib/puma/configuration.rb:228:in `call'
+puma (4.3.1) lib/puma/server.rb:681:in `handle_request'
+puma (4.3.1) lib/puma/server.rb:472:in `process_client'
+puma (4.3.1) lib/puma/server.rb:328:in `block in run'
+puma (4.3.1) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (6.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (4.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateAppConfigs (20200113185058)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "app_configs" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "logo_url" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200113185058"]]
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to DeviseCreateUsers (20200113190602)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200113190602"]]
+  [1m[35m (4.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-03-31 18:18:25.756798"], ["updated_at", "2020-03-31 18:18:25.756798"]]
+  [1m[35m (3.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 159.91.172.116 at 2020-03-31 14:18:35 -0400
+Cannot render console from 159.91.172.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/_mvc.html.erb (Duration: 0.3ms | Allocations: 99)
+  Rendered home/_filetree.html.erb (Duration: 0.5ms | Allocations: 144)
+  [1m[36mAppConfig Load (0.1ms)[0m  [1m[34mSELECT "app_configs".* FROM "app_configs" ORDER BY "app_configs"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:18:in `app_config'
+  Rendered home/_erb.html.erb (Duration: 4.8ms | Allocations: 1995)
+  Rendered home/index.html.erb within layouts/application (Duration: 7.8ms | Allocations: 3167)
+  [1m[36mCACHE AppConfig Load (0.0ms)[0m  [1m[34mSELECT "app_configs".* FROM "app_configs" ORDER BY "app_configs"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:18:in `app_config'
+[Webpacker] Compiling...
+[Webpacker] Compiled all packs in /local/home/sysadmin/S20-T11/public/packs
+[Webpacker] Hash: 6bf6a784d9c96cce84fe
+Version: webpack 4.41.5
+Time: 2444ms
+Built at: 2020-03-31 14:18:41
+                                     Asset       Size       Chunks                         Chunk Names
+    js/application-05e3eff74060317e1395.js    217 KiB  application  [emitted] [immutable]  application
+js/application-05e3eff74060317e1395.js.map    248 KiB  application  [emitted] [dev]        application
+                             manifest.json  364 bytes               [emitted]              
+Entrypoint application = js/application-05e3eff74060317e1395.js js/application-05e3eff74060317e1395.js.map
+[./app/javascript/channels sync recursive _channel\.js$] ./app/javascript/channels sync _channel\.js$ 160 bytes {application} [built]
+[./app/javascript/channels/index.js] 263 bytes {application} [built]
+[./app/javascript/packs/application.js] 792 bytes {application} [built]
+[./node_modules/webpack/buildin/global.js] (webpack)/buildin/global.js 878 bytes {application} [built]
+[./node_modules/webpack/buildin/module.js] (webpack)/buildin/module.js 552 bytes {application} [built]
+    + 7 hidden modules
+
+  [1m[36mCACHE AppConfig Load (0.0ms)[0m  [1m[34mSELECT "app_configs".* FROM "app_configs" ORDER BY "app_configs"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:18:in `app_config'
+Completed 200 OK in 5788ms (Views: 5778.9ms | ActiveRecord: 0.9ms | Allocations: 406600)
+
+
+Started GET "/" for 159.91.172.116 at 2020-03-31 14:18:52 -0400
+Cannot render console from 159.91.172.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/_mvc.html.erb (Duration: 0.1ms | Allocations: 6)
+  Rendered home/_filetree.html.erb (Duration: 0.0ms | Allocations: 5)
+  [1m[36mAppConfig Load (0.4ms)[0m  [1m[34mSELECT "app_configs".* FROM "app_configs" ORDER BY "app_configs"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:18:in `app_config'
+  Rendered home/_erb.html.erb (Duration: 1.9ms | Allocations: 686)
+  Rendered home/index.html.erb within layouts/application (Duration: 2.6ms | Allocations: 873)
+  [1m[36mCACHE AppConfig Load (0.0ms)[0m  [1m[34mSELECT "app_configs".* FROM "app_configs" ORDER BY "app_configs"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:18:in `app_config'
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE AppConfig Load (0.0ms)[0m  [1m[34mSELECT "app_configs".* FROM "app_configs" ORDER BY "app_configs"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:18:in `app_config'
+Completed 200 OK in 16ms (Views: 14.4ms | ActiveRecord: 0.5ms | Allocations: 8849)
+
+
+Started GET "/" for 159.91.172.116 at 2020-03-31 14:18:53 -0400
+Cannot render console from 159.91.172.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/_mvc.html.erb (Duration: 0.1ms | Allocations: 6)
+  Rendered home/_filetree.html.erb (Duration: 0.0ms | Allocations: 5)
+  [1m[36mAppConfig Load (0.1ms)[0m  [1m[34mSELECT "app_configs".* FROM "app_configs" ORDER BY "app_configs"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:18:in `app_config'
+  Rendered home/_erb.html.erb (Duration: 1.4ms | Allocations: 671)
+  Rendered home/index.html.erb within layouts/application (Duration: 2.1ms | Allocations: 857)
+  [1m[36mCACHE AppConfig Load (0.0ms)[0m  [1m[34mSELECT "app_configs".* FROM "app_configs" ORDER BY "app_configs"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:18:in `app_config'
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE AppConfig Load (0.0ms)[0m  [1m[34mSELECT "app_configs".* FROM "app_configs" ORDER BY "app_configs"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:18:in `app_config'
+Completed 200 OK in 15ms (Views: 13.7ms | ActiveRecord: 0.2ms | Allocations: 8819)
+
+
+Started POST "/users/sign_in" for 159.91.172.116 at 2020-03-31 14:18:58 -0400
+Cannot render console from 159.91.172.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"volHP/FCSWWZtfXsa9JlZb2JnbfWgye429sIVpHo61SxStryv6cijrSw7dPLUcun5QCZntBtxzwIM9TmGAvVxg=="}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms | Allocations: 692)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"authenticity_token"=>"volHP/FCSWWZtfXsa9JlZb2JnbfWgye429sIVpHo61SxStryv6cijrSw7dPLUcun5QCZntBtxzwIM9TmGAvVxg=="}
+  Rendering /local/home/sysadmin/.rbenv/versions/2.7.0/lib/ruby/gems/2.7.0/gems/devise-4.7.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /local/home/sysadmin/.rbenv/versions/2.7.0/lib/ruby/gems/2.7.0/gems/devise-4.7.1/app/views/devise/shared/_links.html.erb (Duration: 1.2ms | Allocations: 601)
+  Rendered /local/home/sysadmin/.rbenv/versions/2.7.0/lib/ruby/gems/2.7.0/gems/devise-4.7.1/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 58.6ms | Allocations: 3967)
+  [1m[36mAppConfig Load (0.1ms)[0m  [1m[34mSELECT "app_configs".* FROM "app_configs" ORDER BY "app_configs"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:18:in `app_config'
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE AppConfig Load (0.0ms)[0m  [1m[34mSELECT "app_configs".* FROM "app_configs" ORDER BY "app_configs"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:18:in `app_config'
+Completed 200 OK in 92ms (Views: 79.0ms | ActiveRecord: 1.1ms | Allocations: 18284)
+
+
+Started GET "/users/password/new" for 159.91.172.116 at 2020-03-31 14:19:05 -0400
+Cannot render console from 159.91.172.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Devise::PasswordsController#new as HTML
+  Rendering /local/home/sysadmin/.rbenv/versions/2.7.0/lib/ruby/gems/2.7.0/gems/devise-4.7.1/app/views/devise/passwords/new.html.erb within layouts/application
+  Rendered /local/home/sysadmin/.rbenv/versions/2.7.0/lib/ruby/gems/2.7.0/gems/devise-4.7.1/app/views/devise/shared/_error_messages.html.erb (Duration: 0.5ms | Allocations: 197)
+  Rendered /local/home/sysadmin/.rbenv/versions/2.7.0/lib/ruby/gems/2.7.0/gems/devise-4.7.1/app/views/devise/shared/_links.html.erb (Duration: 0.5ms | Allocations: 172)
+  Rendered /local/home/sysadmin/.rbenv/versions/2.7.0/lib/ruby/gems/2.7.0/gems/devise-4.7.1/app/views/devise/passwords/new.html.erb within layouts/application (Duration: 4.2ms | Allocations: 1620)
+  [1m[36mAppConfig Load (0.2ms)[0m  [1m[34mSELECT "app_configs".* FROM "app_configs" ORDER BY "app_configs"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:18:in `app_config'
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE AppConfig Load (0.0ms)[0m  [1m[34mSELECT "app_configs".* FROM "app_configs" ORDER BY "app_configs"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:18:in `app_config'
+Completed 200 OK in 21ms (Views: 18.5ms | ActiveRecord: 0.2ms | Allocations: 10973)
+
+
+Started GET "/users/sign_up" for 159.91.172.116 at 2020-03-31 14:19:08 -0400
+Cannot render console from 159.91.172.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering /local/home/sysadmin/.rbenv/versions/2.7.0/lib/ruby/gems/2.7.0/gems/devise-4.7.1/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /local/home/sysadmin/.rbenv/versions/2.7.0/lib/ruby/gems/2.7.0/gems/devise-4.7.1/app/views/devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 15)
+  Rendered /local/home/sysadmin/.rbenv/versions/2.7.0/lib/ruby/gems/2.7.0/gems/devise-4.7.1/app/views/devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 90)
+  Rendered /local/home/sysadmin/.rbenv/versions/2.7.0/lib/ruby/gems/2.7.0/gems/devise-4.7.1/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 3.6ms | Allocations: 1475)
+  [1m[36mAppConfig Load (0.2ms)[0m  [1m[34mSELECT "app_configs".* FROM "app_configs" ORDER BY "app_configs"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:18:in `app_config'
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE AppConfig Load (0.0ms)[0m  [1m[34mSELECT "app_configs".* FROM "app_configs" ORDER BY "app_configs"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:18:in `app_config'
+Completed 200 OK in 19ms (Views: 17.3ms | ActiveRecord: 0.2ms | Allocations: 10924)
+
+
+Started GET "/users/sign_in" for 159.91.172.116 at 2020-03-31 14:19:09 -0400
+Cannot render console from 159.91.172.116! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Devise::SessionsController#new as HTML
+  Rendering /local/home/sysadmin/.rbenv/versions/2.7.0/lib/ruby/gems/2.7.0/gems/devise-4.7.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /local/home/sysadmin/.rbenv/versions/2.7.0/lib/ruby/gems/2.7.0/gems/devise-4.7.1/app/views/devise/shared/_links.html.erb (Duration: 0.3ms | Allocations: 135)
+  Rendered /local/home/sysadmin/.rbenv/versions/2.7.0/lib/ruby/gems/2.7.0/gems/devise-4.7.1/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 2.3ms | Allocations: 1068)
+  [1m[36mAppConfig Load (0.1ms)[0m  [1m[34mSELECT "app_configs".* FROM "app_configs" ORDER BY "app_configs"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:18:in `app_config'
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE AppConfig Load (0.0ms)[0m  [1m[34mSELECT "app_configs".* FROM "app_configs" ORDER BY "app_configs"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:18:in `app_config'
+Completed 200 OK in 16ms (Views: 14.2ms | ActiveRecord: 0.2ms | Allocations: 9381)
+
+
+Started GET "/" for 159.91.173.130 at 2020-04-12 15:34:42 -0400
+Cannot render console from 159.91.173.130! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+PG::ConnectionBad (FATAL:  Ident authentication failed for user "postgres"
+):
+  
+pg (1.2.3) lib/pg.rb:58:in `initialize'
+pg (1.2.3) lib/pg.rb:58:in `new'
+pg (1.2.3) lib/pg.rb:58:in `connect'
+activerecord (6.0.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:46:in `postgresql_connection'
+activerecord (6.0.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:889:in `new_connection'
+activerecord (6.0.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:933:in `checkout_new_connection'
+activerecord (6.0.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:912:in `try_to_checkout_new_connection'
+activerecord (6.0.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:873:in `acquire_connection'
+activerecord (6.0.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:595:in `checkout'
+activerecord (6.0.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:439:in `connection'
+activerecord (6.0.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:1121:in `retrieve_connection'
+activerecord (6.0.2.1) lib/active_record/connection_handling.rb:238:in `retrieve_connection'
+activerecord (6.0.2.1) lib/active_record/connection_handling.rb:206:in `connection'
+activerecord (6.0.2.1) lib/active_record/migration.rb:562:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.2.1) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+better_errors (2.5.1) lib/better_errors/middleware.rb:59:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+web-console (4.0.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.1) lib/web_console/middleware.rb:19:in `block in call'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.1.1) lib/rack/method_override.rb:24:in `call'
+rack (2.1.1) lib/rack/runtime.rb:24:in `call'
+activesupport (6.0.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.1.1) lib/rack/sendfile.rb:113:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.2.1) lib/rails/engine.rb:526:in `call'
+puma (4.3.1) lib/puma/configuration.rb:228:in `call'
+puma (4.3.1) lib/puma/server.rb:681:in `handle_request'
+puma (4.3.1) lib/puma/server.rb:472:in `process_client'
+puma (4.3.1) lib/puma/server.rb:328:in `block in run'
+puma (4.3.1) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/" for 159.91.173.171 at 2020-04-12 23:43:06 -0400
+Cannot render console from 159.91.173.171! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+PG::ConnectionBad (could not connect to server: Connection refused
+	Is the server running on host "127.0.0.1" and accepting
+	TCP/IP connections on port 5432?
+):
+  
+pg (1.2.3) lib/pg.rb:58:in `initialize'
+pg (1.2.3) lib/pg.rb:58:in `new'
+pg (1.2.3) lib/pg.rb:58:in `connect'
+activerecord (6.0.2.1) lib/active_record/connection_adapters/postgresql_adapter.rb:46:in `postgresql_connection'
+activerecord (6.0.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:889:in `new_connection'
+activerecord (6.0.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:933:in `checkout_new_connection'
+activerecord (6.0.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:912:in `try_to_checkout_new_connection'
+activerecord (6.0.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:873:in `acquire_connection'
+activerecord (6.0.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:595:in `checkout'
+activerecord (6.0.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:439:in `connection'
+activerecord (6.0.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:1121:in `retrieve_connection'
+activerecord (6.0.2.1) lib/active_record/connection_handling.rb:238:in `retrieve_connection'
+activerecord (6.0.2.1) lib/active_record/connection_handling.rb:206:in `connection'
+activerecord (6.0.2.1) lib/active_record/migration.rb:562:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.2.1) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+better_errors (2.5.1) lib/better_errors/middleware.rb:59:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+web-console (4.0.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.1) lib/web_console/middleware.rb:19:in `block in call'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.1.1) lib/rack/method_override.rb:24:in `call'
+rack (2.1.1) lib/rack/runtime.rb:24:in `call'
+activesupport (6.0.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.1.1) lib/rack/sendfile.rb:113:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.2.1) lib/rails/engine.rb:526:in `call'
+puma (4.3.1) lib/puma/configuration.rb:228:in `call'
+puma (4.3.1) lib/puma/server.rb:681:in `handle_request'
+puma (4.3.1) lib/puma/server.rb:472:in `process_client'
+puma (4.3.1) lib/puma/server.rb:328:in `block in run'
+puma (4.3.1) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+  [1m[35m (1094.8ms)[0m  [1m[35mCREATE DATABASE "ConCensus_development" ENCODING = 'unicode' TEMPLATE = "template0"[0m
+  [1m[35m (157.6ms)[0m  [1m[35mCREATE DATABASE "ConCensus_test" ENCODING = 'unicode' TEMPLATE = "template0"[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "app_configs" CASCADE[0m
+  [1m[35m (12.0ms)[0m  [1m[35mCREATE TABLE "app_configs" ("id" bigserial primary key, "name" character varying, "logo_url" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (7.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  [1m[35m (54.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200113190602)[0m
+  [1m[35m (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200113185058);
+
+[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-04-14 19:14:51.248226"], ["updated_at", "2020-04-14 19:14:51.248226"]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "d4c89b77014c7e82394c69a179b6b733b108cfcf"], ["created_at", "2020-04-14 19:14:51.258589"], ["updated_at", "2020-04-14 19:14:51.258589"]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "app_configs" CASCADE[0m
+  [1m[35m (15.9ms)[0m  [1m[35mCREATE TABLE "app_configs" ("id" bigserial primary key, "name" character varying, "logo_url" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (7.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  [1m[35m (28.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200113190602)[0m
+  [1m[35m (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200113185058);
+
+[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-04-14 19:14:51.402531"], ["updated_at", "2020-04-14 19:14:51.402531"]]
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.5ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2020-04-14 19:14:51.411299"], ["key", "environment"]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "d4c89b77014c7e82394c69a179b6b733b108cfcf"], ["created_at", "2020-04-14 19:14:51.418182"], ["updated_at", "2020-04-14 19:14:51.418182"]]
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAppConfig Create (1.1ms)[0m  [1m[32mINSERT INTO "app_configs" ("name", "logo_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "MyApp"], ["logo_url", "hhhhhhh"], ["created_at", "2020-04-14 19:14:51.498294"], ["updated_at", "2020-04-14 19:14:51.498294"]]
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "admin@example.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["email", "admin@example.com"], ["encrypted_password", "$2a$11$xk8dEpSVNjoBLJHacvJwAeYgJOurX8hIHPM2o042bw3oJtsXDONI."], ["created_at", "2020-04-14 19:14:51.752425"], ["updated_at", "2020-04-14 19:14:51.752425"]]
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "user@example.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["email", "user@example.com"], ["encrypted_password", "$2a$11$faNVWhzCWgx9Pu.xgicZCevaO6tVwyvK6yWMgeDJ2T73wRrd5NLUu"], ["created_at", "2020-04-14 19:14:51.898039"], ["updated_at", "2020-04-14 19:14:51.898039"]]
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (87.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "ConCensus_development"[0m
+  [1m[35m (71.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "ConCensus_test"[0m
+  [1m[35m (291.3ms)[0m  [1m[35mCREATE DATABASE "ConCensus_development" ENCODING = 'unicode' TEMPLATE = "template0"[0m
+  [1m[35m (87.6ms)[0m  [1m[35mCREATE DATABASE "ConCensus_test" ENCODING = 'unicode' TEMPLATE = "template0"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "app_configs" CASCADE[0m
+  [1m[35m (48.4ms)[0m  [1m[35mCREATE TABLE "app_configs" ("id" bigserial primary key, "name" character varying, "logo_url" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (6.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (48.0ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  [1m[35m (19.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200113190602)[0m
+  [1m[35m (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200113185058);
+
+[0m
+  [1m[35m (6.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-04-14 19:15:36.050665"], ["updated_at", "2020-04-14 19:15:36.050665"]]
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "d4c89b77014c7e82394c69a179b6b733b108cfcf"], ["created_at", "2020-04-14 19:15:36.061888"], ["updated_at", "2020-04-14 19:15:36.061888"]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "app_configs" CASCADE[0m
+  [1m[35m (53.9ms)[0m  [1m[35mCREATE TABLE "app_configs" ("id" bigserial primary key, "name" character varying, "logo_url" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (8.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200113190602)[0m
+  [1m[35m (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200113185058);
+
+[0m
+  [1m[35m (5.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-04-14 19:15:36.194987"], ["updated_at", "2020-04-14 19:15:36.194987"]]
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.4ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2020-04-14 19:15:36.202646"], ["key", "environment"]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "d4c89b77014c7e82394c69a179b6b733b108cfcf"], ["created_at", "2020-04-14 19:15:36.210331"], ["updated_at", "2020-04-14 19:15:36.210331"]]
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAppConfig Create (1.0ms)[0m  [1m[32mINSERT INTO "app_configs" ("name", "logo_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "MyApp"], ["logo_url", "hhhhhhh"], ["created_at", "2020-04-14 19:15:36.261776"], ["updated_at", "2020-04-14 19:15:36.261776"]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "admin@example.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["email", "admin@example.com"], ["encrypted_password", "$2a$11$GyRkhLCwIfSBku1/BVGA.eV9qPqVRZriQ/IHTtntBpdD5U1Vm/bH2"], ["created_at", "2020-04-14 19:15:36.417229"], ["updated_at", "2020-04-14 19:15:36.417229"]]
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "user@example.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["email", "user@example.com"], ["encrypted_password", "$2a$11$lrT3TqNCe/UkyLsR8xV9f.HlbkZFTHqUhj56b4mnUGPMZ7gOFj8Lm"], ["created_at", "2020-04-14 19:15:36.559298"], ["updated_at", "2020-04-14 19:15:36.559298"]]
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/" for 159.91.173.130 at 2020-04-14 15:20:48 -0400
+Cannot render console from 159.91.173.130! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/_mvc.html.erb (Duration: 0.9ms | Allocations: 99)
+  Rendered home/_filetree.html.erb (Duration: 1.2ms | Allocations: 144)
+  [1m[36mAppConfig Load (0.5ms)[0m  [1m[34mSELECT "app_configs".* FROM "app_configs" ORDER BY "app_configs"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:18:in `app_config'
+  Rendered home/_erb.html.erb (Duration: 16.6ms | Allocations: 4244)
+  Rendered home/index.html.erb within layouts/application (Duration: 75.9ms | Allocations: 5416)
+  [1m[36mCACHE AppConfig Load (0.0ms)[0m  [1m[34mSELECT "app_configs".* FROM "app_configs" ORDER BY "app_configs"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:18:in `app_config'
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE AppConfig Load (0.0ms)[0m  [1m[34mSELECT "app_configs".* FROM "app_configs" ORDER BY "app_configs"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:18:in `app_config'
+Completed 200 OK in 798ms (Views: 778.6ms | ActiveRecord: 6.6ms | Allocations: 82100)
+
+
+Started POST "/users/sign_in" for 159.91.173.130 at 2020-04-14 15:20:54 -0400
+Cannot render console from 159.91.173.130! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"97UXDFDfeyZQSuuJH5EUF6EDmL48UWGVa/llaSuvLcKuun9iG5S/mhusakKDeuXsXgeTeVjCLd0R7x344UnEhw=="}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms | Allocations: 533)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"authenticity_token"=>"97UXDFDfeyZQSuuJH5EUF6EDmL48UWGVa/llaSuvLcKuun9iG5S/mhusakKDeuXsXgeTeVjCLd0R7x344UnEhw=="}
+  Rendering /local/home/sysadmin/.rbenv/versions/2.7.0/lib/ruby/gems/2.7.0/gems/devise-4.7.1/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /local/home/sysadmin/.rbenv/versions/2.7.0/lib/ruby/gems/2.7.0/gems/devise-4.7.1/app/views/devise/shared/_links.html.erb (Duration: 26.5ms | Allocations: 597)
+  Rendered /local/home/sysadmin/.rbenv/versions/2.7.0/lib/ruby/gems/2.7.0/gems/devise-4.7.1/app/views/devise/sessions/new.html.erb within layouts/application (Duration: 104.8ms | Allocations: 3962)
+  [1m[36mAppConfig Load (0.4ms)[0m  [1m[34mSELECT "app_configs".* FROM "app_configs" ORDER BY "app_configs"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:18:in `app_config'
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE AppConfig Load (0.0ms)[0m  [1m[34mSELECT "app_configs".* FROM "app_configs" ORDER BY "app_configs"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:18:in `app_config'
+Completed 200 OK in 138ms (Views: 120.2ms | ActiveRecord: 4.3ms | Allocations: 18128)
+
+
+Started GET "/users/sign_up" for 159.91.173.130 at 2020-04-14 15:20:57 -0400
+Cannot render console from 159.91.173.130! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering /local/home/sysadmin/.rbenv/versions/2.7.0/lib/ruby/gems/2.7.0/gems/devise-4.7.1/app/views/devise/registrations/new.html.erb within layouts/application
+  Rendered /local/home/sysadmin/.rbenv/versions/2.7.0/lib/ruby/gems/2.7.0/gems/devise-4.7.1/app/views/devise/shared/_error_messages.html.erb (Duration: 1.5ms | Allocations: 197)
+  Rendered /local/home/sysadmin/.rbenv/versions/2.7.0/lib/ruby/gems/2.7.0/gems/devise-4.7.1/app/views/devise/shared/_links.html.erb (Duration: 0.3ms | Allocations: 121)
+  Rendered /local/home/sysadmin/.rbenv/versions/2.7.0/lib/ruby/gems/2.7.0/gems/devise-4.7.1/app/views/devise/registrations/new.html.erb within layouts/application (Duration: 8.2ms | Allocations: 2112)
+  [1m[36mAppConfig Load (0.4ms)[0m  [1m[34mSELECT "app_configs".* FROM "app_configs" ORDER BY "app_configs"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:18:in `app_config'
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE AppConfig Load (0.0ms)[0m  [1m[34mSELECT "app_configs".* FROM "app_configs" ORDER BY "app_configs"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:18:in `app_config'
+Completed 200 OK in 24ms (Views: 22.3ms | ActiveRecord: 0.5ms | Allocations: 11485)
+
+
+Started POST "/users" for 159.91.173.130 at 2020-04-14 15:21:08 -0400
+Cannot render console from 159.91.173.130! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"authenticity_token"=>"yuPf58VsX4baiU/uM9MElF+teP/xYheHAVsbZqXhMCOvFE9ivb3/w72SVqV+Pv+96DQBuUiZJmv6/mG4kdH9oQ==", "user"=>{"email"=>"a@b.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "a@b.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.9ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["email", "a@b.com"], ["encrypted_password", "$2a$11$en18LWsYCWris35uPOeji.LwUYECYM.4bFlCQ/8yAYSqZA4NuLvBS"], ["created_at", "2020-04-14 19:21:08.764187"], ["updated_at", "2020-04-14 19:21:08.764187"]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://csc415-s20-team11.hpc.tcnj.edu:3000/
+Completed 302 Found in 150ms (ActiveRecord: 4.0ms | Allocations: 10778)
+
+
+Started GET "/" for 159.91.173.130 at 2020-04-14 15:21:08 -0400
+Cannot render console from 159.91.173.130! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/_mvc.html.erb (Duration: 0.0ms | Allocations: 6)
+  Rendered home/_filetree.html.erb (Duration: 0.0ms | Allocations: 5)
+  [1m[36mAppConfig Load (0.3ms)[0m  [1m[34mSELECT "app_configs".* FROM "app_configs" ORDER BY "app_configs"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:18:in `app_config'
+  Rendered home/_erb.html.erb (Duration: 1.7ms | Allocations: 714)
+  Rendered home/index.html.erb within layouts/application (Duration: 2.4ms | Allocations: 901)
+  [1m[36mCACHE AppConfig Load (0.0ms)[0m  [1m[34mSELECT "app_configs".* FROM "app_configs" ORDER BY "app_configs"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:18:in `app_config'
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE AppConfig Load (0.0ms)[0m  [1m[34mSELECT "app_configs".* FROM "app_configs" ORDER BY "app_configs"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/application_helper.rb:18:in `app_config'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:47
+Completed 200 OK in 17ms (Views: 15.2ms | ActiveRecord: 0.7ms | Allocations: 9615)
+
+

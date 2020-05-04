@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ConCensus</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%# CSS Links %>
+    <%= render "partials/css" %>
+    
+  </head>
+
+  <body class="nav-md">
+  <div class="container body">
+    <% flash.each do |key, value| %>
+        <div align="center" id="flash" class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
+  
+  <%= render "partials/sidenav" %>
+  <%= render "partials/topnav" %>
+  
+  <%= yield %>
+  
+    <%= render "partials/footer" %>
+
+    <%# Javascript Links %>
+    <%= render "partials/javascript" %>
+  
+  </body>
+  </html>
